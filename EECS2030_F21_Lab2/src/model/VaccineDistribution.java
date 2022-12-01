@@ -11,11 +11,20 @@ public class VaccineDistribution {
 		this.nod = nod;
 	}
 	
-	/* Accessors */	
+	/* Accessors */
+	public Vaccine getVaccine() {
+		return this.vaccine;
+	}
+	public int getNumberOfDoses() {
+		return this.nod;
+	}
 	public String toString() {
 		return String.format("%d doses of %s by %s", this.nod, this.vaccine.getCodename(), this.vaccine.getManufacturer());
 	}
 	
 	
 	/* Mutators */
+	public void addDistribution(int n) {
+		this.nod += n;
+	}
 }

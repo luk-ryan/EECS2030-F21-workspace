@@ -3,6 +3,7 @@ package model;
 public class HealthRecord {
 	private String name;
 	private String receipt;
+	private String appointmentStatus;
 	
 	private VaccinationData[] data;
 	private int nod; // number of doses the patient has received (used to keep track of how much data is stored)
@@ -15,10 +16,15 @@ public class HealthRecord {
 		MAX_NUMBER_OF_DOSES = mnod;
 		this.data = new VaccinationData[MAX_NUMBER_OF_DOSES];
 		this.receipt = this.name + " has not yet received any doses.";
+		this.appointmentStatus = "No vaccination appointment for " + this.name + " yet";
 	}
 	
 	
 	/* Accessors */
+	public String getName() {
+		return this.name;
+	}
+	
 	public String getVaccinationReceipt() {
 		if (nod > 0) {
 			this.receipt = String.format("Number of doses %s has received: %d [", this.name, this.nod);
@@ -39,7 +45,7 @@ public class HealthRecord {
 	}
 	
 	public String getAppointmentStatus() {
-		return "No vaccination appointment for Alan yet";
+		return this.appointmentStatus;
 	}
 	
 	
@@ -50,5 +56,24 @@ public class HealthRecord {
 		if (this.nod < MAX_NUMBER_OF_DOSES) {
 			this.data[this.nod++] = vd;
 		}
+		if (nod > 0) {
+			this.receipt = String.format("Number of doses %s has received: %d [", this.name, this.nod);
+			
+			for (int i = 0; i < this.nod; i++) {
+				
+				if (i == this.nod - 1) {
+					this.receipt += String.format("%s in %s on %s]", this.data[i].getVaccine().toString(), 
+							this.data[i].getVaccinationSite(), this.data[i].getdate());
+				}
+				else {
+					this.receipt += String.format("%s in %s on %s; ", this.data[i].getVaccine().toString(), 
+							this.data[i].getVaccinationSite(), this.data[i].getdate());
+				}
+			}
+		}
+	}
+	
+	public void changeAppointmentStatus(String s) {
+		this.appointmentStatus = s;
 	}
 }

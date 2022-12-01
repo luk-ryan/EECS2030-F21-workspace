@@ -24,9 +24,7 @@ public class Vaccine {
 	}
 	
 	
-	
-	
-	public String toString() {
+	public boolean isRecognized() {
 		String[] recognizedCodenames = {"mRNA-1273", "BNT162b2", "Ad26.COV2.S", "AZD1222"};
 		boolean isRecognized = false;
 		
@@ -35,8 +33,12 @@ public class Vaccine {
 				isRecognized = true;
 			}
 		}
+		return isRecognized;
+	}
+	
+	public String toString() {
 		
-		if (isRecognized) { // using the isRecognized variable, output the appropriate string
+		if (this.isRecognized()) { // using the isRecognized variable, output the appropriate string
 			return String.format("Recognized vaccine: %s (%s; %s)", this.codename, this.type, this.manufacturer);
 		}
 		else {

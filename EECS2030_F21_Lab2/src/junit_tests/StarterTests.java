@@ -5,6 +5,10 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import model.HealthRecord;
+import model.InsufficientVaccineDosesException;
+import model.TooMuchDistributionException;
+import model.UnrecognizedVaccineCodeNameException;
+import model.VaccinationSite;
 import model.Vaccine;
 import model.VaccineDistribution;
 
